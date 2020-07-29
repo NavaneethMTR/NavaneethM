@@ -1,0 +1,1246 @@
+pipeline {
+   agent { label 'CODES' }
+   environment {
+        Operation="${env.Operation}"
+        Env1="${Env1}"
+        Site="${env.Environment}"
+        Servers="${env.Servers}"
+        dryrun="${env.dryrun}"
+        NameSpace="${env.NameSpace}"      
+    }
+    stages {
+      
+     stage('AmpexPublish'){
+         agent { label 'CODES' }
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/Other/AmpexPublish/ASR/${Site}-${Env1}/AmpexPublish-${Site}-${Env1}-DrainUndrain"
+                     echo "${Path1}"
+                     if (env.AmpexPublish == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        }  
+     stage('Audits2'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/Other/Audits2/ASR/${Site}-${Env1}/Audits2-${Site}-${Env1}-DrainUndrain"
+                     if (env.Audits2 == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        }   
+     stage('CiteLineUpdater'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/Other/CiteLineUpdater/ASR/${Site}-${Env1}/CiteLineUpdater-${Site}-${Env1}-DrainUndrain"
+                     if (env.CiteLineUpdater == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        }   
+     stage('CobaltDataFeed'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/CobaltDataFeed/ASR/${Site}-${Env1}/CobaltDataFeed-${Site}-${Env1}-DrainUndrain"
+                     if (env.CobaltDataFeed == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('CodesWorkflow2'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/CodesWorkflow2/ASR/${Site}-${Env1}/CodesWorkflow2-${Site}-${Env1}-DrainUndrain"
+                     if (env.CodesWorkflow2 == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('CopyrightsPublishing'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/CopyrightsPublishing/ASR/${Site}-${Env1}/CopyrightsPublishing-${Site}-${Env1}-DrainUndrain"
+                     if (env.CopyrightsPublishing == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('CRSSchedules'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/Other/CRSSchedules/ASR/${Site}-${Env1}/CRSSchedules-${Site}-${Env1}-DrainUndrain"
+                     if (env.CRSSchedules == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('CwbSourceInput'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesWorkbench/CwbSourceInput/ASR/${Site}-${Env1}/CwbSourceInput-${Site}-${Env1}-DrainUndrain"
+                     if (env.CwbSourceInput == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('CwbSourceIntegrate'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesWorkbench/CwbSourceIntegrate/ASR/${Site}-${Env1}/CwbSourceIntegrate-${Site}-${Env1}-DrainUndrain"
+                     if (env.CwbSourceIntegrate == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('DelayedMetadocPublishing'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/DelayedMetadocPublishing/ASR/${Site}-${Env1}/DelayedMetadocPublishing-${Site}-${Env1}-DrainUndrain"
+                     if (env.DelayedMetadocPublishing == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('DerwentPatentPublishing'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/DerwentPatentPublishing/ASR/${Site}-${Env1}/DerwentPatentPublishing-${Site}-${Env1}-DrainUndrain"
+                     if (env.DerwentPatentPublishing == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('DerwentPatentPublishingPartialUpdates'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/DerwentPatentPublishingPartialUpdates/ASR/${Site}-${Env1}/DerwentPatentPublishingPartialUpdates-${Site}-${Env1}-DrainUndrain"
+                     if (env.DerwentPatentPublishingPartialUpdates == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('DeltatextGit'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/DeltatextGit/ASR/${Site}-${Env1}/DeltatextGit-${Site}-${Env1}-DrainUndrain"
+                     if (env.DeltatextGit == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('WIPCodesGIT'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/WIPCodesGIT/FederalRegister/ASR/${Site}-${Env1}/FederalRegister-${Site}-${Env1}-DrainUndrain"
+                     if (env.FederalRegister == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('InpadocPatentPublishing'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/InpadocPatentPublishing/ASR/${Site}-${Env1}/InpadocPatentPublishing-${Site}-${Env1}-DrainUndrain"
+                     if (env.InpadocPatentPublishing == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('IPATools'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/Patents/IPATools/ASR/${Site}-${Env1}/IPATools-${Site}-${Env1}-DrainUndrain"
+                     if (env.IPATools == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('IPAuthority'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/IPAuthority/ASR/${Site}-${Env1}/IPAuthority-${Site}-${Env1}-DrainUndrain"
+                     if (env.IPAuthority == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('kcResearchRefs'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/Other/kcResearchRefs/ASR/${Site}-${Env1}/kcResearchRefs-${Site}-${Env1}-DrainUndrain"
+                     if (env.kcResearchRefs == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('KeyCiteAudit'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/Other/KeyCiteAudit/ASR/${Site}-${Env1}/KeyCiteAudit-${Site}-${Env1}-DrainUndrain"
+                     if (env.KeyCiteAudit == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('KeyCiteFlagPublish'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/Other/KeyCiteFlagPublish/ASR/${Site}-${Env1}/KeyCiteFlagPublish-${Site}-${Env1}-DrainUndrain"
+                     if (env.KeyCiteFlagPublish == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('Knex'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/Other/Knex/ASR/${Site}-${Env1}/Knex-${Site}-${Env1}-DrainUndrain"
+                     if (env.Knex == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('LCPR'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/Other/LCPR/ASR/${Site}-${Env1}/LCPR-${Site}-${Env1}-DrainUndrain"
+                     if (env.LCPR == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('LegalProfessionalAuthority'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/LegalProfessionalAuthority/ASR/${Site}-${Env1}/LegalProfessionalAuthority-${Site}-${Env1}-DrainUndrain"
+                     if (env.LegalProfessionalAuthority == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('LegislativeHistory'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/Other/LegislativeHistory/ASR/${Site}-${Env1}/LegislativeHistory-${Site}-${Env1}-DrainUndrain"
+                     if (env.LegislativeHistory == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('NodClassify'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesWorkbench/NodClassify/ASR/${Site}-${Env1}/NodClassify-${Site}-${Env1}-DrainUndrain"
+                     if (env.NodClassify == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('NovusHistoricalExtract'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/Other/NovusHistoricalExtract/ASR/${Site}-${Env1}/NovusHistoricalExtract-${Site}-${Env1}-DrainUndrain"
+                     if (env.NovusHistoricalExtract == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('patentImagePublishing'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/patentImagePublishing/ASR/${Site}-${Env1}/patentImagePublishing-${Site}-${Env1}-DrainUndrain"
+                     if (env.patentImagePublishing == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('PatentPublishingAsiapac'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/PatentPublishingAsiapac/ASR/${Site}-${Env1}/PatentPublishingAsiapac-${Site}-${Env1}-DrainUndrain"
+                     if (env.PatentPublishingAsiapac == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('PatentPublishingCommon'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/PatentPublishingCommon/ASR/${Site}-${Env1}/PatentPublishingCommon-${Site}-${Env1}-DrainUndrain"
+                     if (env.PatentPublishingCommon == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('PatentPublishingEuro'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/PatentPublishingEuro/ASR/${Site}-${Env1}/PatentPublishingEuro-${Site}-${Env1}-DrainUndrain"
+                     if (env.patentPublishingEuro == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('PatentPublishingEuroPartialUpdates'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/PatentPublishingEuroPartialUpdates/ASR/${Site}-${Env1}/PatentPublishingEuroPartialUpdates-${Site}-${Env1}-DrainUndrain"
+                     if (env.PatentPublishingEuroPartialUpdates == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('PatentPublishingPct'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/PatentPublishingPct/ASR/${Site}-${Env1}/PatentPublishingPct-${Site}-${Env1}-DrainUndrain"
+                     if (env.PatentPublishingPct == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('PatentPublishingTools'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/PatentPublishingTools/ASR/${Site}-${Env1}/PatentPublishingTools-${Site}-${Env1}-DrainUndrain"
+                     if (env.PatentPublishingTools == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('PopNamesWeb'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/PopNamesWeb/ASR/${Site}-${Env1}/PopNamesWeb-${Site}-${Env1}-DrainUndrain"
+                     if (env.PopNamesWeb == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('PrintExtract'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/Other/PrintExtract/ASR/${Site}-${Env1}/PrintExtract-${Site}-${Env1}-DrainUndrain"
+                     if (env.PrintExtract == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('PublishingToolbox'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/PublishingToolbox/ASR/${Site}-${Env1}/PublishingToolbox-${Site}-${Env1}-DrainUndrain"
+                     if (env.PublishingToolbox == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('Raven'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/Raven/ASR/${Site}-${Env1}/Raven-${Site}-${Env1}-DrainUndrain"
+                     if (env.Raven == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('Recomp'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/Recomp/Development/${Site}-${Env1}/Recomp-${Site}-${Env1}-DrainUndrain"
+                     if (env.Recomp == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('RVMS'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/Other/RVMS/ASR/${Site}-${Env1}/RVMS-${Site}-${Env1}-DrainUndrain"
+                     if (env.RVMS == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('SearchAndReplace'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesWorkbench/SearchAndReplace/ASR/${Site}-${Env1}/SearchAndReplace-${Site}-${Env1}-DrainUndrain"
+                     if (env.SearchAndReplace == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('SourceNovusLoad'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/Other/SourceNovusLoad/ASR/${Site}-${Env1}/SourceNovusLoad-${Site}-${Env1}-DrainUndrain"
+                     if (env.SourceNovusLoad == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('SourcePublish'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesWorkbench/SourcePublish/ASR/${Site}-${Env1}/SourcePublish-${Site}-${Env1}-DrainUndrain"
+                     if (env.SourcePublish == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('TargetDocument'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesWorkbench/TargetDocument/ASR/${Site}-${Env1}/TargetDocument-${Site}-${Env1}-DrainUndrain"
+                     if (env.TargetDocument == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('TargetBatch'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesWorkbench/TargetBatch/ASR/${Site}-${Env1}/TargetBatch-${Site}-${Env1}-DrainUndrain"
+                     if (env.TargetBatch == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('TomcatKnexReporting'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/Other/TomcatKnexReporting/ASR/${Site}-${Env1}/TomcatKnexReporting-${Site}-${Env1}-DrainUndrain"
+                     if (env.TomcatKnexReporting == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('TrimBatch'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/TrimBatch/ASR/${Site}-${Env1}/TrimBatch-${Site}-${Env1}-DrainUndrain"
+                     if (env.TrimBatch == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('TTAB'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/Patents/TTAB/ASR/${Site}-${Env1}/TTAB-${Site}-${Env1}-DrainUndrain"
+                     if (env.TTAB == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('USCATablesWeb'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/Other/USCATablesWeb/ASR/${Site}-${Env1}/USCATablesWeb-${Site}-${Env1}-DrainUndrain"
+                     if (env.USCATablesWeb == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('USPatentAssignmentPublishing'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/USPatentAssignmentPublishing/ASR/${Site}-${Env1}/USPatentAssignmentPublishing-${Site}-${Env1}-DrainUndrain"
+                     if (env.USPatentAssignmentPublishing == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('USPatentPublishing'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/USPatentPublishing/ASR/${Site}-${Env1}/USPatentPublishing-${Site}-${Env1}-DrainUndrain"
+                     if (env.USPatentPublishing == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('USPre76PatentPublishing'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/USPre76PatentPublishing/ASR/${Site}-${Env1}/USPre76PatentPublishing-${Site}-${Env1}-DrainUndrain"
+                     if (env.USPre76PatentPublishing == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('Undo'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesWorkbench/Undo/ASR/${Site}-${Env1}/Undo-${Site}-${Env1}-DrainUndrain"
+                     if (env.Undo == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('Workflow'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesWorkbench/Workflow/ASR/${Site}-${Env1}/Workflow-${Site}-${Env1}-DrainUndrain"
+                     if (env.Workflow == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('Boxer'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/Boxer/ASR/${Site}-${Env1}/Boxer-${Site}-${Env1}-DrainUndrain"
+                     if (env.Boxer == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('TANG'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/TANG/ASR/${Site}-${Env1}/TANG-${Site}-${Env1}-DrainUndrain"
+                     if (env.TANG == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('CodesBenchNavigator'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesWorkbench/CodesBenchNavigator/ASR/${Site}-${Env1}/CodesBenchNavigator-${Site}-${Env1}-DrainUndrain"
+                     if (env.CodesBenchNavigator == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('Editor'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesWorkbench/Editor/ASR/${Site}-${Env1}/Editor-${Site}-${Env1}-DrainUndrain"
+                     if (env.Editor == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('CwbEditor'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesWorkbench/CwbEditor/Development/${Site}-${Env1}/CwbEditor-${Site}-${Env1}-DrainUndrain"
+                     if (env.CwbEditor == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('HierarchyEdit'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesWorkbench/HierarchyEdit/ASR/${Site}-${Env1}/HierarchyEdit-${Site}-${Env1}-DrainUndrain"
+                     if (env.HierarchyEdit == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('QueryNote'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesWorkbench/QueryNote/ASR/${Site}-${Env1}/QueryNote-${Site}-${Env1}-DrainUndrain"
+                     if (env.QueryNote == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('SourceDocument'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/SourceDocument/ASR/${Site}-${Env1}/SourceDocument-${Site}-${Env1}-DrainUndrain"
+                     if (env.SourceDocument == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        }
+     stage('SourceNavigate'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesWorkbench/SourceNavigate/ASR/${Site}-${Env1}/SourceNavigate-${Site}-${Env1}-DrainUndrain"
+                     if (env.SourceNavigate == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        }
+     stage('SourcePrint'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesWorkbench/SourcePrint/ASR/${Site}-${Env1}/SourcePrint-${Site}-${Env1}-DrainUndrain"
+                     if (env.SourcePrint == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('TargetBatchUI'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesWorkbench/TargetBatchUI/ASR/${Site}-${Env1}/TargetBatchUI-${Site}-${Env1}-DrainUndrain"
+                     if (env.TargetBatchUI == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('IPAmon'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/IPAmon/ASR/${Site}-${Env1}/IPAmon-${Site}-${Env1}-DrainUndrain"
+                     if (env.IPAmon == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('BTS'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/Other/BTS/ASR/${Site}-${Env1}/BTS-${Site}-${Env1}-DrainUndrain"
+                     if (env.BTS == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('Cars'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/Other/Cars/ASR/${Site}-${Env1}/Cars-${Site}-${Env1}-DrainUndrain"
+                     if (env.Cars == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('CiteLineApp'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/Other/CiteLineApp/ASR/${Site}-${Env1}/CiteLineApp-${Site}-${Env1}-DrainUndrain"
+                     if (env.CiteLineApp == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('CodesSSO'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/Other/CodesSSO/ASR/${Site}-${Env1}/CodesSSO-${Site}-${Env1}-DrainUndrain"
+                     if (env.CodesSSO == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('GrcSourceAuthority'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/Other/GrcSourceAuthority/ASR/${Site}-${Env1}/GrcSourceAuthority-${Site}-${Env1}-DrainUndrain"
+                     if (env.GrcSourceAuthority == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('HighTocTC'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/Other/HighTocTC/ASR/${Site}-${Env1}/HighTocTC-${Site}-${Env1}-DrainUndrain"
+                     if (env.HighTocTC == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('JODConverterLCPR'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/Other/JODConverterLCPR/ASR/${Site}-${Env1}/JODConverterLCPR-${Site}-${Env1}-DrainUndrain"
+                     if (env.JODConverterLCPR == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('NovusValidation'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/Other/NovusValidation/ASR/${Site}-${Env1}/NovusValidation-${Site}-${Env1}-DrainUndrain"
+                     if (env.NovusValidation == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('TrimUIWeb'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/TrimUIWeb/ASR/${Site}-${Env1}/TrimUIWeb-${Site}-${Env1}-DrainUndrain"
+                     if (env.TrimUIWeb == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('CodesMetaData'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/CodesMetaData/ASR/${Site}-${Env1}/CodesMetaData-${Site}-${Env1}-DrainUndrain"
+                     if (env.CodesMetaData == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('PopNamesAuthority'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/PopNamesAuthority/ASR/${Site}-${Env1}/PopNamesAuthority-${Site}-${Env1}-DrainUndrain"
+                     if (env.PopNamesAuthority == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('TWIRL'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/TWIRL/ASR/${Site}-${Env1}/TWIRL-${Site}-${Env1}-DrainUndrain"
+                     if (env.TWIRL == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('UsptoTsdr'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/UsptoTsdr/ASR/${Site}-${Env1}/UsptoTsdr-${Site}-${Env1}-DrainUndrain"
+                     if (env.UsptoTsdr == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('UsptoUsPatentsPublishingWeb'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/UsptoUsPatentsPublishingWeb/ASR/${Site}-${Env1}/UsptoUsPatentsPublishingWeb-${Site}-${Env1}-DrainUndrain"
+                     if (env.UsptoUsPatentsPublishingWeb == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('UsptoPair'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/CodesGIT/UsptoPair/ASR/${Site}-${Env1}/UsptoPair-${Site}-${Env1}-DrainUndrain"
+                     if (env.UsptoPair == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('CARWeditingSrv'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/Carswell/ASR/CARWeditingSrv/CARWeditingSrv-${Site}-${Env1}-DrainUndrain"
+                     if (env.CARWeditingSrv == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+     stage('CARWextractSrv'){
+         steps{
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 script{
+                     Path1= "SCM-BLR/Codes/Carswell/ASR/CARWextractSrv/CARWextractSrv-${Site}-${Env1}-DrainUndrain"
+                     if (env.CARWextractSrv == 'true'){
+                         build job:"${Path1}",
+                         parameters: [
+                            [$class:'StringParameterValue' , name: 'Operation' , value: "${Operation}" ],[$class:'StringParameterValue' , name: 'Env1' , value: "${Env1}"],[$class:'StringParameterValue' , name: 'Environment' , value: "${Site}"],[$class:'StringParameterValue' , name: 'Server' , value: "${Servers}"],[$class:'StringParameterValue' , name: 'dryrun' , value: "${dryrun}"],[$class:'StringParameterValue' , name: 'NameSpace' , value: "${NameSpace}"]
+                           ]
+                        }   
+                    }
+                } 
+            } 
+        } 
+    }
+}
